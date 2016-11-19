@@ -22,16 +22,12 @@ module.exports = React.createClass({
       window.alert("No details available for input: '" + place.name + "'");
       return;
     }
-
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      var addressFormComponents = {};
-      // Get each component of the address from the place details
-      // and fill the corresponding field on the form.
-      for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
-        addressFormComponents[addressType] = place.address_components[i].short_name;
-      }
+    var addressFormComponents = {};
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      addressFormComponents[addressType] = place.address_components[i].short_name;
     }
     addressFormComponents["streetAddress"] = addressFormComponents["street_number"] + " " + addressFormComponents["route"];
 
@@ -71,7 +67,7 @@ module.exports = React.createClass({
       <div className="container">
       {this.state.showModal ?
         <Modal mapCenter={this.state.mapCenter} modifyAddressForm={this.changeAddressFormData} addressFormData = {this.state.addressComponents} location={this.state.location}/> :
-        <input ref="input" {...this.props} type="text" onKeyUp={this.inputChange} placeholder="Enter you home address"/>
+        <input ref="input" {...this.props} type="text" placeholder="Enter you home address"/>
       }
       </div>
     );

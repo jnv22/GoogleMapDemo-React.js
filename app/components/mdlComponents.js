@@ -19,7 +19,7 @@ const Components = {
             {this.props.map ? this.props.map() : null}
           </CardMedia>
           <CardText>
-          {this.props.content}
+            {this.props.content}
           </CardText>
           <CardActions>
             <FlatButton label={this.props.modalOptions.failButton.text} onClick={this.props.modalOptions.failButton.onclick}/>
