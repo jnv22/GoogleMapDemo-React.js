@@ -14,13 +14,13 @@ var Map = React.createClass({
       }
       function createMapOptions (maps) {
         return {
-        panControl: false,
-        mapTypeControl: false,
-        zoomControl: false,
-        draggable: false,
-        disableDoubleClickZoom: true,
-        streetViewControl: false,
-        scrollwheel: false
+          panControl: false,
+          mapTypeControl: false,
+          zoomControl: false,
+          draggable: false,
+          disableDoubleClickZoom: true,
+          streetViewControl: false,
+          scrollwheel: false
         }
       }
       return (

@@ -15,21 +15,24 @@ module.exports = React.createClass({
   },
 
   onPlacesChanged: function() {
-    var place = this.props.searchBox.getPlace();
+    let place = this.props.searchBox.getPlace();
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.
       window.alert("No details available for input: '" + place.name + "'");
       return;
     }
-    var addressFormComponents = {};
+    let addressFormComponents = {};
     // Get each component of the address from the place details
     // and fill the corresponding field on the form.
     for (var i = 0; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
       addressFormComponents[addressType] = place.address_components[i].short_name;
     }
-    addressFormComponents["streetAddress"] = addressFormComponents["street_number"] + " " + addressFormComponents["route"];
+    //add additional address fields
+    addressFormComponents["streetAddress"] = (addressFormComponents["street_number"] || '')
+      + " " + (addressFormComponents["route"] || '');
+    addressFormComponents["unit"] = '';
 
     this.setState({
       addressComponents: addressFormComponents,
@@ -40,20 +43,20 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function(){
-    var input = ReactDOM.findDOMNode(this.refs.input);
+    let input = ReactDOM.findDOMNode(this.refs.input);
     this.props.searchBox = new google.maps.places.Autocomplete(input);
     this.props.searchBox.setTypes = ['address'];
     this.props.searchBox.addListener('place_changed', this.onPlacesChanged);
   },
 
   changeAddressFormData: function(name, e) {
-    var newData;
-    if (!e.target) newData = e;
+    let updatedAddress;
+    if (!e.target) updatedAddress = e;
     else {
-      newData = e.target.value;
+      updatedAddress = e.target.value
     };
-    var addressComponents = update(this.state.addressComponents, {
-       [name]: {$set: newData}
+    let addressComponents = update(this.state.addressComponents, {
+       [name]: {$set: updatedAddress}
     });
     this.setState({addressComponents: addressComponents});
   },

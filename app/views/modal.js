@@ -35,12 +35,11 @@ var Card = React.createClass({
         }
       }
     }
-    let Forms = Form.bind(null, this.props.addressFormData, this.props.modifyAddressForm);
     return (
       <div>
         {this.state.showMap ?
         <Map {...this.props} content={this.props.location} modalOptions={cardOptions.map}/> :
-        <Form {...this.props} isExpanded={false} modalOptions={cardOptions.addressForm} />}
+        <Form {...this.props} modalOptions={cardOptions.addressForm} />}
       </div>
     )
   }

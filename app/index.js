@@ -4,11 +4,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Main from './views/main';
-import { Router, Route, browserHistory} from 'react-router';
+import {Router, Route, browserHistory} from 'react-router';
 
 injectTapEventPlugin();
 require('./styles/app.scss');
-
 
 if (typeof window !== 'undefined') window.React = React;
 
