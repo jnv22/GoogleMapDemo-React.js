@@ -1,3 +1,7 @@
 # GoogleMap Demo-React.js
 
-Project for Richard
+##Setup
+1. Run `npm install`
+2. Run `webpack-dev-server`
+
+Server runs on localhost:8080
